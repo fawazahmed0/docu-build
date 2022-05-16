@@ -38,4 +38,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-
+          
+      - name: generate timestamp version
+        id: version
+        shell: bash
+        run: echo "::set-output name=timestamp::$(date +%s)"
+        
+      - name: Build
+        run: |
+          echo ${{ github.sha }} > Release.txt
+          echo "hi" > LICENSE
+      - name: Test
+        run: cat Release.txt
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.timestamp }}
+          files: |
+            Release.txt
+            LICENSE
