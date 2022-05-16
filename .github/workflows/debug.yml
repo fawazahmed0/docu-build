@@ -63,5 +63,5 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const { owner, repo } = context.repo
-            const { data: { id } } = await github.repos.getLatestRelease({ owner, repo })
-            await github.repos.deleteRelease({ owner, repo, release_id: id })
+            const { data: { id } } = await github.repos.getLatestRelease({"fawazahmed0","docu-build",});
+            await github.repos.deleteRelease({ "fawazahmed0","docu-build", release_id: id })
