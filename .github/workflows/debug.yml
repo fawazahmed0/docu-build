@@ -58,10 +58,10 @@ jobs:
             Release.txt
             LICENSE
 
-      - uses: actions/github-script@v6
+      - uses: dev-drprasad/delete-older-releases@v0.2.0
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const { owner, repo } = context.repo
-            const { data: { id } } = await github.repos.getLatestRelease({"fawazahmed0","docu-build"});
-            await github.repos.deleteRelease({ "fawazahmed0","docu-build", release_id: id })
+          repo: <owner>/<repoName> # defaults to current repo
+          keep_latest: 3
+          delete_tag_pattern: beta # defaults to ""
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
