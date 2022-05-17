@@ -6,4 +6,7 @@ RUN yum -y remove docker docker-client docker-client-latest docker-common docker
 RUN yum install -y yum-utils
 RUN yum-config-manager -y --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 RUN yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin criu
+WORKDIR /
+RUN mkdir build
+RUN mkdir checkpoint
 CMD ["sh","-c","(dockerd --experimental &) && /bin/bash"]
