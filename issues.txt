@@ -1,0 +1,33 @@
+https://www.linuxtechi.com/extend-lvm-partitions/
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/storage_administration_guide/swap-removing-lvm2
+
+The time limit will be solved , but you cannot fix low space because when checkpoint will be created , it will get data from swap to harddisk, at that time hardisk space will be low
+
+
+https://stackoverflow.com/a/10781818/2437224 tar
+https://superuser.com/a/1326138/1200777
+
+https://unix.stackexchange.com/a/676119
+
+tar -cMv --tape-length=1M --file=my_archive-{0..50}.tar testdir
+
+tar -xMv --tape-length=1M --file=my_archive-{0..50}.tar testdir
+
+use -tM to list content of tar archiv
+
+idea was to save data at release & then download it during second job and delete the release
+
+
+/var/lib/docker/containers/$(docker ps -aq --no-trunc --filter name=cr)/checkpoints/
+
+https://docs.docker.com/engine/reference/commandline/checkpoint/
+
+(cr is container name)
+docker checkpoint create cr checkpoint1
+or
+docker checkpoint --checkpoint-dir=customdir create cr checkpoint1
+
+
+docker start --checkpoint checkpoint1 cr
+
